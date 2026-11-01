@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Student | Caner Sivri |
-| Student number | 5001230018 (`SID` in the program: 1230018 — last 9 digits, since 5001230018 > 2³¹ − 1) |
+| Student number | 5001230018 |
 | Task | G2 — Exam Grade Distribution |
 | ISA | RISC-V RV32IM |
 | Compiler | riscv64-unknown-elf-gcc <version> |
