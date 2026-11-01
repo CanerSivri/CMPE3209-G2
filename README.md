@@ -1,13 +1,14 @@
+
 # CMPE3209 Computer Organization — Term Project
 
-| | |
-|---|---|
-| Student | Caner Sivri |
-| Student number | 5001230018 |
-| Task | G2 — Exam Grade Distribution |
-| ISA | RISC-V RV32IM |
-| Compiler | riscv64-unknown-elf-gcc <version> |
-| Simulator | Ripes v2.3.1 (single-cycle processor, RV32IM) |
+|                |                                               |
+| -------------- | --------------------------------------------- |
+| Student        | Caner Sivri                                   |
+| Student number | 5001230018                                    |
+| Task           | G2 — Exam Grade Distribution                 |
+| ISA            | RISC-V RV32IM                                 |
+| Compiler       | riscv64-unknown-elf-gcc <version></version>   |
+| Simulator      | Ripes v2.3.1 (single-cycle processor, RV32IM) |
 
 ## How to build and run
 
