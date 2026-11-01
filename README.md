@@ -1,4 +1,4 @@
-# CMPE3209 Computer Organization — Term Project: C to Silicon
+# CMPE3209 Computer Organization — Term Project
 
 | | |
 |---|---|
