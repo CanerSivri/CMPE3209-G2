@@ -1,0 +1,36 @@
+== 4a trace (-O0) ==
+references 1755, loads 1180, stores 575, stack 1398, grades[] 148, other globals 209
+
+== 4c/4d personal cache: 256 B, 8 B line, 2-way, 16 sets, LRU, write-back ==
+first 30: refs 30, hits 23, misses 7, H 0.7667, memory writes 0, dirty lines left 7
+whole trace: refs 1755, hits 1703, misses 52, H 0.9704, memory writes 22, dirty lines left 21
+write-through would need 575 memory writes; write-back needs 22 + 21 final flushes
+
+== 4e design space (cache size 256 B) ==
+Direct        hits  1601 misses  154 H 0.9123  T_s 2.755
+2-way         hits  1703 misses   52 H 0.9704  T_s 1.593
+4-way         hits  1720 misses   35 H 0.9801  T_s 1.399
+Fully assoc.  hits  1723 misses   32 H 0.9818  T_s 1.365
+8 B           hits  1703 misses   52 H 0.9704  T_s 1.593
+16 B          hits  1716 misses   39 H 0.9778  T_s 1.444
+32 B          hits  1707 misses   48 H 0.9726  T_s 1.547
+64 B          hits  1665 misses   90 H 0.9487  T_s 2.026
+
+== 4f ==
+T_s = 0.9704*1 + 0.0296*21 = 1.5926 cycles; speedup vs no cache = 20/1.5926 = 12.56
+
+== 4g (main_v2.c) ==
+Y7 before ([23, 5, 7, 2, 5], 48, 22, 19)  after ([23, 5, 7, 2, 5], 48, 22, 19)
+before: refs 1755 misses 52 H 0.9704 T_s 1.5926
+after : refs 1755 misses 47 H 0.9732 T_s 1.5356  Ic 4472
+
+== 5a ==
+-O0: Ic 4514 {'alu': 2191, 'mul': 128, 'load': 1180, 'store': 575, 'branch': 440}  CPI 1.1542  T 2894.4 ns  MIPS 1559.5  m 0.3888  H 0.9704 T_s 1.5926  T(no cache) 22394.4 ns  T(cache) 4447.2 ns
+-O1: Ic 1234 {'alu': 638, 'mul': 127, 'load': 64, 'store': 101, 'branch': 304}  CPI 1.4522  T 995.6 ns  MIPS 1239.5  m 0.1337  H 0.7758 T_s 5.4848  T(no cache) 2828.9 ns  T(cache) 1498.3 ns
+speedup O0->O1 (cache) 2.968; (no memory effect) 2.907
+speedup no cache -> cache (-O0) 5.036
+Amdahl: parallel share f = 3755.7/8005.0 = 0.4692; speedup(Nc=8) = 1.696; limit = 1.884
+
+== 3d ==
+PCIe: header 12, ECRC 0: total 188 octets, efficiency 0.8936, with 128b/130b 0.8799
+PCIe: header 16, ECRC 4: total 196 octets, efficiency 0.8571, with 128b/130b 0.8440
